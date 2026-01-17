@@ -1,0 +1,8 @@
+
+# Hidden service for web app
+HiddenServiceDir /var/lib/tor/webapp/
+HiddenServicePort 80 webapp:8080
+
+# Hidden service for SSH
+HiddenServiceDir /var/lib/tor/ssh/
+HiddenServicePort 22 127.0.0.1:22

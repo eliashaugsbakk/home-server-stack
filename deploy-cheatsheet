@@ -1,0 +1,9 @@
+# Create a custom Docker network
+docker network create <network-name>
+
+# Run a container on the network
+docker run -d \
+  --name <container-name> \
+  --network <network-name> \
+  -p <host-port>:<container-port> \   # to forward port form host to container
+  -v <host-path>:<container-path> \   # to create persistaint storage
