@@ -1,0 +1,24 @@
+services:
+  tor-gateway:
+    build: .
+    container_name: tor-gateway
+    restart: unless-stopped
+    networks:
+      - web-internal
+    volumes:
+      - ../tor-data:/var/lib/tor
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  java-app:
+    container_name: java-app
+    build:
+      context: /mnt/usb-thumb-drive/server-data/docker-spring
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - web-internal
+
+networks:
+  web-internal:
+    driver: bridge
