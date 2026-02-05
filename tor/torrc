@@ -1,11 +1,10 @@
-
-# Hidden service for web app
+# Hidden service for spring
 HiddenServiceDir /var/lib/tor/webapp/
-HiddenServicePort 80 127.0.0.1:8080
+HiddenServicePort 80 java-app:8080
 
 # Hidden service for SSH
 HiddenServiceDir /var/lib/tor/ssh/
-HiddenServicePort 22 127.0.0.1:22
+HiddenServicePort 22 host.docker.internal:22
 
 AvoidDiskWrites 1
 DataDirectory /tmp/tor
