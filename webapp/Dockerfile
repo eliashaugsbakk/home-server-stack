@@ -1,14 +1,10 @@
-FROM openjdk:25-slim
+FROM eclipse-temurin:25-jre-alpine
 
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring
 
-WORKDIR /app
+WORKDIR /opt/app
 
-# Expose your web server port to allow for LAN connections
-#EXPOSE 8080
+COPY --chown=spring:spring japp.jar /opt/app/japp.jar
 
-# allow volume for updated JAR
-VOLUME ["/app"]
-
-# Run your Java app
-CMD sh -c 'java -jar *.jar'
-
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "/opt/app/japp.jar"]
